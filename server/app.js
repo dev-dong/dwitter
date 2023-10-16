@@ -4,6 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import tweetRouter from './router/tweets.js';
+import authRouter from './router/auth.js';
 
 const app = express(); // express를 실행하면 app이라는 객체가 생성된다.
 
@@ -15,6 +16,7 @@ app.use(morgan('tiny'));
 
 // router 설정
 app.use('/tweets', tweetRouter);
+app.use('/auth', authRouter);
 
 // url이 없는 경우
 app.use((req, res, next) => {
