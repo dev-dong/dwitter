@@ -6,7 +6,8 @@ import helmet from 'helmet';
 import tweetRouter from './router/tweets.js';
 import authRouter from './router/auth.js';
 import {config} from "./config.js";
-import {Server} from "socket.io";
+import {initSocket} from "./connection/socket.js";
+import {db} from "./db/database.js";
 
 const app = express(); // express를 실행하면 app이라는 객체가 생성된다.
 
@@ -30,6 +31,8 @@ app.use((err, req, res, next) => {
     console.error(err);
     res.sendStatus(500);
 });
+
+db.getConnection().then(connection => console.log(connection));
 
 const server = app.listen(config.host.port);
 initSocket(server);
