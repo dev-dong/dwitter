@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import tweetRouter from './router/tweets.js';
 import authRouter from './router/auth.js';
+import {config} from "./config.js";
 
 const app = express(); // express를 실행하면 app이라는 객체가 생성된다.
 
@@ -29,4 +30,4 @@ app.use((err, req, res, next) => {
     res.sendStatus(500);
 });
 
-app.listen(8080);
+app.listen(config.host.port);
